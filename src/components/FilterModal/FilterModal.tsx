@@ -21,7 +21,11 @@ const FilterModal = ({ open, onClose, onOkay }: PropType) => {
     onOkay(modalIssueState);
   };
   return (
-    <Modal title="select a state" visible={open} onOk={handleOk}>
+    <Modal
+      title="select a state"
+      visible={open}
+      onOk={handleOk}
+      onCancel={onClose}>
       <CustomSelect
         options={validStates}
         value={modalIssueState}

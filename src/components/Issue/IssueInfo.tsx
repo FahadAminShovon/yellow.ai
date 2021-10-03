@@ -36,7 +36,7 @@ const IssueInfo = ({
     return 'Due by -';
   };
   return (
-    <Row align="middle" className={cx('container')}>
+    <Row align="middle" className={cx('container')} wrap>
       {labels.length > 0 && (
         <Col span={24}>
           <Space size="small">

@@ -21,10 +21,10 @@ const navItem = [
 class App extends React.Component {
   render() {
     return (
-      <Row align='middle' className={cx('nav')}>
+      <Row align="middle" className={cx('nav')}>
         <Col span={10}>
           <Row>
-            {navItem.map((item, index) => (
+            {navItem.map((item) => (
               <Col flex={1} key={item.name} className={cx('nav__item')}>
                 <Text strong={item.active}>{item.name}</Text>
               </Col>
@@ -34,14 +34,17 @@ class App extends React.Component {
         <Col span={10} />
 
         <Col span={4}>
-          <Row align='middle' justify='end'>
-            <Space size='large'>
+          <Row align="middle" justify="end">
+            <Space size="large">
               <SvgBell />
               <SvgQuestionOutline />
-              <Row align='middle' justify='center'>
+              <Row align="middle" justify="center">
                 <Avatar
                   src={
-                    <Image src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
+                    <Image
+                      src="https://picsum.photos/100/100"
+                      alt="random-image"
+                    />
                   }
                 />
                 <SvgCarretDown />

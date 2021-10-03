@@ -11,6 +11,7 @@ import { PER_PAGE } from '../constants';
 import FilterModal from '../components/FilterModal/FilterModal';
 import { StatusType } from '../utils/GenericTypes';
 import { useLoaderContext } from '../context/LoaderContext';
+import SvgCarretDown from '../Assets/icons/SvgCarretDown';
 
 const cx = classNames.bind(styles);
 
@@ -53,7 +54,7 @@ const IssuePage = () => {
       callback: setIssues,
       queryParams: { state: issueState, per_page: PER_PAGE, page: page },
     });
-  }, [issueState]);
+  }, []);
 
   return (
     <div className={cx('container')}>
@@ -61,7 +62,10 @@ const IssuePage = () => {
         <Col span={24} className={cx('heading')}>
           <Row>
             <Col flex="auto">
-              <Title>All tickets</Title>
+              <Space align="center" size="large">
+                <Title>All tickets</Title>
+                <SvgCarretDown style={{ position: 'relative', bottom: 8 }} />
+              </Space>
             </Col>
             <Space size="middle">
               <Button

@@ -5,6 +5,8 @@ import SvgDifficulty from '../../Assets/icons/SvgDifficulty';
 import CustomSelect from '../CustomSelect/CustomSelect';
 import { useIssueContext } from '../../context/StateContextProvider';
 import SvgStatus from '../../Assets/icons/SvgStatus';
+import { IssueType } from '../../api/getIssueApi';
+import SvgCadet from '../../Assets/icons/SvgCadet';
 
 const { Text } = Typography;
 
@@ -48,9 +50,26 @@ const dummySelections = [
   ),
 }));
 
-const IssueFilterScreen = () => {
+type PropType = {
+  issue: IssueType;
+};
+const IssueFilterScreen = ({ issue }: PropType) => {
   const [difficulty, setDifficulty] = useState('medium');
+  const [assignee, setAssignee] = useState(issue.assignee?.login || '');
   const { issueState } = useIssueContext();
+  const assigneeOptions =
+    issue.assignees?.map((item) => ({
+      ...item,
+      label: (
+        <Row align="middle">
+          <Space>
+            <SvgCadet />
+            <Text>{item.login}</Text>
+          </Space>
+        </Row>
+      ),
+    })) || [];
+
   return (
     <Row>
       <Col xs={24} md={12} lg={6}>
@@ -74,7 +93,16 @@ const IssueFilterScreen = () => {
         />
       </Col>
       <Col xs={24} md={12} lg={10}>
-        filter 3
+        <CustomSelect
+          options={assigneeOptions}
+          labelKey={'label'}
+          valueKey={'login'}
+          widthPercent={90}
+          value={assignee || '-'}
+          onChange={(val) => {
+            setAssignee(val);
+          }}
+        />
       </Col>
       <Col md={2}></Col>
     </Row>

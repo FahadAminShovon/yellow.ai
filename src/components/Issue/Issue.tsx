@@ -15,7 +15,7 @@ type PropType = {
 };
 
 const Issue = ({ issue, style, ref }: PropType) => {
-  const avatarColor = useMemo(() => getAvatarColor(), [issue]);
+  const avatarColor = useMemo(() => getAvatarColor(), [JSON.stringify(issue)]);
   const { title, user, labels = [], created_at, milestone } = issue;
   let createdBy = '';
   let due_on = '';
@@ -50,7 +50,7 @@ const Issue = ({ issue, style, ref }: PropType) => {
             />
           </Col>
           <Col md={24} lg={12}>
-            <IssueFilterScreen />
+            <IssueFilterScreen issue={issue} />
           </Col>
         </Row>
       </Card>
