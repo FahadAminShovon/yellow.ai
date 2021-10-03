@@ -1,0 +1,10 @@
+.container {
+  margin: 0px 16px;
+}
+
+.divider--circle {
+  background-color: #a1aab2;
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+}

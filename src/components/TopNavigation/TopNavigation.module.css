@@ -1,0 +1,8 @@
+.nav {
+  padding: 8px 24px;
+  box-shadow: 0px 1px 0px #d1d1d1;
+}
+
+.nav__item {
+  cursor: pointer;
+}

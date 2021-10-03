@@ -1,25 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import TopNavigation from './components/TopNavigation/TopNavigation';
+import { StateContext } from './context/StateContextProvider';
+import IssuePage from './pages/IssuePage';
+import { StatusType } from './utils/GenericTypes';
 
 function App() {
+  const [issueState, setIssueState] = useState<StatusType>('open');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StateContext.Provider
+      value={{
+        issueState,
+        setIssueState,
+      }}>
+      <TopNavigation />
+      <IssuePage />
+    </StateContext.Provider>
   );
 }
 
