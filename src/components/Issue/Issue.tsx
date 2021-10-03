@@ -29,30 +29,32 @@ const Issue = ({ issue, style, ref }: PropType) => {
 
   const avatarLetter = login ? login.charAt(0).toUpperCase() : '?';
   return (
-    <Card className={cx('container')} style={style}>
-      <Row align="middle" ref={ref}>
-        <Col lg={2}>
-          <Space size="large">
-            <Checkbox />
-            <Avatar size={55} style={{ background: avatarColor }}>
-              {avatarLetter}
-            </Avatar>
-          </Space>
-        </Col>
-        <Col lg={10}>
-          <IssueInfo
-            title={title}
-            labels={labels}
-            createdAt={created_at}
-            dueDate={due_on}
-            createdBy={createdBy}
-          />
-        </Col>
-        <Col md={24} lg={12}>
-          <IssueFilterScreen />
-        </Col>
-      </Row>
-    </Card>
+    <div style={style}>
+      <Card className={cx('container')} hoverable>
+        <Row align="middle" ref={ref}>
+          <Col lg={2}>
+            <Space size="large">
+              <Checkbox />
+              <Avatar size={55} style={{ background: avatarColor }}>
+                {avatarLetter}
+              </Avatar>
+            </Space>
+          </Col>
+          <Col lg={10}>
+            <IssueInfo
+              title={title}
+              labels={labels}
+              createdAt={created_at}
+              dueDate={due_on}
+              createdBy={createdBy}
+            />
+          </Col>
+          <Col md={24} lg={12}>
+            <IssueFilterScreen />
+          </Col>
+        </Row>
+      </Card>
+    </div>
   );
 };
 
