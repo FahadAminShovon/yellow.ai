@@ -10,6 +10,7 @@ import { useIssueContext } from '../context/StateContextProvider';
 import { PER_PAGE } from '../constants';
 import FilterModal from '../components/FilterModal/FilterModal';
 import { StatusType } from '../utils/GenericTypes';
+import { useLoaderContext } from '../context/LoaderContext';
 
 const cx = classNames.bind(styles);
 
@@ -21,22 +22,38 @@ const IssuePage = () => {
   const [page, setPage] = useState(1);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const closeModal = () => setIsOpenModal(false);
+  const { setShowLoader } = useLoaderContext();
+
   const handleOkay = (val: StatusType) => {
     if (val !== issueState) {
       setIssueState(val);
       setPage(1);
       setIssues([]);
+      getIssue({
+        setLoader: setShowLoader,
+        callback: setIssues,
+        queryParams: { state: issueState, per_page: PER_PAGE, page: 1 },
+      });
     }
     closeModal();
   };
   const showModal = () => setIsOpenModal(true);
 
+  const handlePageChange = (pageNo: number) => {
+    setPage(pageNo);
+    getIssue({
+      callback: setIssues,
+      queryParams: { state: issueState, per_page: PER_PAGE, page: pageNo },
+    });
+  };
+
   useEffect(() => {
     getIssue({
+      setLoader: setShowLoader,
       callback: setIssues,
       queryParams: { state: issueState, per_page: PER_PAGE, page: page },
     });
-  }, [issueState, page]);
+  }, [issueState]);
 
   return (
     <div className={cx('container')}>
@@ -66,7 +83,7 @@ const IssuePage = () => {
       </Row>
       <Row>
         <Col span={24}>
-          <IssueList issues={issues} page={page} setPage={setPage} />
+          <IssueList issues={issues} page={page} setPage={handlePageChange} />
         </Col>
       </Row>
       <FilterModal

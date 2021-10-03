@@ -99,12 +99,15 @@ type Params = {
     state?: StatusType;
   };
   callback: React.Dispatch<React.SetStateAction<IssueType[]>>;
+  setLoader?: (val: boolean) => void;
 };
 
 export const getIssue = async ({
   callback,
+  setLoader,
   queryParams = { page: 1, per_page: PER_PAGE, state: 'open' },
 }: Params) => {
+  if (typeof setLoader === 'function') setLoader(true);
   try {
     const response = await axios({
       baseURL: BASE_URL,
@@ -118,6 +121,9 @@ export const getIssue = async ({
       throw new Error('Invalid response');
     }
   } catch (error) {
+    if (typeof setLoader === 'function') setLoader(true);
     console.log(error);
+  } finally {
+    if (typeof setLoader === 'function') setLoader(false);
   }
 };

@@ -14,7 +14,7 @@ import { MAX_ROWS } from '../../constants';
 type PropType = {
   issues: IssueType[];
   page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
+  setPage: (val: number) => void;
 };
 
 const IssueList = ({ issues, page, setPage }: PropType) => {
