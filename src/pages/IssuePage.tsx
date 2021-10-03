@@ -8,6 +8,8 @@ import { getIssue, IssueType } from '../api/getIssueApi';
 import IssueList from '../components/Issue/IssueList';
 import { useIssueContext } from '../context/StateContextProvider';
 import { PER_PAGE } from '../constants';
+import FilterModal from '../components/FilterModal/FilterModal';
+import { StatusType } from '../utils/GenericTypes';
 
 const cx = classNames.bind(styles);
 
@@ -15,8 +17,19 @@ const { Title } = Typography;
 
 const IssuePage = () => {
   const [issues, setIssues] = useState<IssueType[]>([]);
-  const { issueState } = useIssueContext();
+  const { issueState, setIssueState } = useIssueContext();
   const [page, setPage] = useState(1);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const closeModal = () => setIsOpenModal(false);
+  const handleOkay = (val: StatusType) => {
+    if (val !== issueState) {
+      setIssueState(val);
+      setPage(1);
+      setIssues([]);
+    }
+    closeModal();
+  };
+  const showModal = () => setIsOpenModal(true);
 
   useEffect(() => {
     getIssue({
@@ -43,6 +56,7 @@ const IssuePage = () => {
               <Button
                 className={cx('btn')}
                 size="large"
+                onClick={showModal}
                 icon={<SvgFilter className={cx('btn__icon')} />}>
                 Filters
               </Button>
@@ -55,6 +69,11 @@ const IssuePage = () => {
           <IssueList issues={issues} page={page} setPage={setPage} />
         </Col>
       </Row>
+      <FilterModal
+        open={isOpenModal}
+        onOkay={handleOkay}
+        onClose={closeModal}
+      />
     </div>
   );
 };
