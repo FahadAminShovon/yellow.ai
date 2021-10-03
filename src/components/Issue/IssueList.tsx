@@ -1,6 +1,5 @@
 import { Col, Row } from 'antd';
 import React from 'react';
-import { IssueType } from '../../api/getIssueApi';
 import Issue from './Issue';
 import {
   CellMeasurerCache,
@@ -10,6 +9,7 @@ import {
   InfiniteLoader,
 } from 'react-virtualized';
 import { MAX_ROWS } from '../../constants';
+import { IssueType } from '../../api/getIssueApi.types';
 
 type PropType = {
   issues: IssueType[];

@@ -3,7 +3,7 @@ import './App.css';
 // import Loader from './components/Loader/Loader';
 import TopNavigation from './components/TopNavigation/TopNavigation';
 import { LoaderContext } from './context/LoaderContext';
-import { StateContext } from './context/StateContextProvider';
+import { StateContext } from './context/StateContext';
 import IssuePage from './pages/IssuePage';
 import { StatusType } from './utils/GenericTypes';
 import { Spin } from 'antd';

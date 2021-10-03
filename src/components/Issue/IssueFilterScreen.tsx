@@ -3,10 +3,10 @@ import { Col, Row, Space, Typography } from 'antd';
 
 import SvgDifficulty from '../../Assets/icons/SvgDifficulty';
 import CustomSelect from '../CustomSelect/CustomSelect';
-import { useIssueContext } from '../../context/StateContextProvider';
+import { useIssueContext } from '../../context/StateContext';
 import SvgStatus from '../../Assets/icons/SvgStatus';
-import { IssueType } from '../../api/getIssueApi';
 import SvgCadet from '../../Assets/icons/SvgCadet';
+import { IssueType } from '../../api/getIssueApi.types';
 
 const { Text } = Typography;
 

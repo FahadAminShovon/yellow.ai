@@ -1,11 +1,11 @@
 import { Avatar, Card, Checkbox, Col, Row, Space } from 'antd';
 import React, { useMemo } from 'react';
-import { IssueType } from '../../api/getIssueApi';
 import styles from './issue.module.css';
 import classNames from 'classnames/bind';
 import { getAvatarColor } from '../../utils/helpers';
 import IssueInfo from './IssueInfo';
 import IssueFilterScreen from './IssueFilterScreen';
+import { IssueType } from '../../api/getIssueApi.types';
 const cx = classNames.bind(styles);
 
 type PropType = {

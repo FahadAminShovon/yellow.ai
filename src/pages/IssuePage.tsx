@@ -4,14 +4,15 @@ import classNames from 'classnames/bind';
 import styles from './IssuePage.module.css';
 import SvgSort from '../Assets/icons/SvgSort';
 import SvgFilter from '../Assets/icons/SvgFilter';
-import { getIssue, IssueType } from '../api/getIssueApi';
+import { getIssue } from '../api/getIssueApi';
 import IssueList from '../components/Issue/IssueList';
-import { useIssueContext } from '../context/StateContextProvider';
+import { useIssueContext } from '../context/StateContext';
 import { PER_PAGE } from '../constants';
 import FilterModal from '../components/FilterModal/FilterModal';
 import { StatusType } from '../utils/GenericTypes';
 import { useLoaderContext } from '../context/LoaderContext';
 import SvgCarretDown from '../Assets/icons/SvgCarretDown';
+import { IssueType } from '../api/getIssueApi.types';
 
 const cx = classNames.bind(styles);
 
@@ -56,6 +57,8 @@ const IssuePage = () => {
     });
   }, []);
 
+  const ticketState = issueState[0].toUpperCase() + issueState.slice(1);
+
   return (
     <div className={cx('container')}>
       <Row>
@@ -63,7 +66,7 @@ const IssuePage = () => {
           <Row>
             <Col flex="auto">
               <Space align="center" size="large">
-                <Title>All tickets</Title>
+                <Title>{ticketState} tickets</Title>
                 <SvgCarretDown style={{ position: 'relative', bottom: 8 }} />
               </Space>
             </Col>

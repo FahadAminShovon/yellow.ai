@@ -1,9 +1,9 @@
-import { Col, Row, Space, Tag, Typography } from 'antd';
 import React from 'react';
-import { LabelsEntity } from '../../api/getIssueApi';
+import { Col, Row, Space, Tag, Typography } from 'antd';
 import styles from './issueInfo.module.css';
 import classNames from 'classnames/bind';
 import moment from 'moment';
+import { LabelsEntity } from '../../api/getIssueApi.types';
 
 const { Text } = Typography;
 
