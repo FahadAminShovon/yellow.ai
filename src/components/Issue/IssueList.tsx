@@ -62,11 +62,9 @@ const IssueList = ({ issues, page, setPage }: PropType) => {
                           parent={parent}
                           columnIndex={0}
                           rowIndex={index}>
-                          <Issue
-                            style={style}
-                            issue={issues[index]}
-                            key={key}
-                          />
+                          <div style={style}>
+                            <Issue issue={issues[index]} key={key} />
+                          </div>
                         </CellMeasurer>
                       );
                     }}></List>

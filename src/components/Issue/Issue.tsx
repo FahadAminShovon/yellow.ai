@@ -10,11 +10,9 @@ const cx = classNames.bind(styles);
 
 type PropType = {
   issue: IssueType;
-  style: any;
-  ref?: any;
 };
 
-const Issue = ({ issue, style, ref }: PropType) => {
+const Issue = ({ issue }: PropType) => {
   const avatarColor = useMemo(() => getAvatarColor(), [JSON.stringify(issue)]);
   const { title, user, labels = [], created_at, milestone } = issue;
   let createdBy = '';
@@ -29,32 +27,30 @@ const Issue = ({ issue, style, ref }: PropType) => {
 
   const avatarLetter = login ? login.charAt(0).toUpperCase() : '?';
   return (
-    <div style={style}>
-      <Card className={cx('container')} hoverable>
-        <Row align="middle" ref={ref}>
-          <Col lg={2}>
-            <Space size="large">
-              <Checkbox />
-              <Avatar size={55} style={{ background: avatarColor }}>
-                {avatarLetter}
-              </Avatar>
-            </Space>
-          </Col>
-          <Col lg={10}>
-            <IssueInfo
-              title={title}
-              labels={labels}
-              createdAt={created_at}
-              dueDate={due_on}
-              createdBy={createdBy}
-            />
-          </Col>
-          <Col md={24} lg={12}>
-            <IssueFilterScreen issue={issue} />
-          </Col>
-        </Row>
-      </Card>
-    </div>
+    <Card className={cx('container')} hoverable>
+      <Row align="middle">
+        <Col lg={2}>
+          <Space size="large">
+            <Checkbox />
+            <Avatar size={55} style={{ background: avatarColor }}>
+              {avatarLetter}
+            </Avatar>
+          </Space>
+        </Col>
+        <Col lg={10}>
+          <IssueInfo
+            title={title}
+            labels={labels}
+            createdAt={created_at}
+            dueDate={due_on}
+            createdBy={createdBy}
+          />
+        </Col>
+        <Col md={24} lg={12}>
+          <IssueFilterScreen issue={issue} />
+        </Col>
+      </Row>
+    </Card>
   );
 };
 
