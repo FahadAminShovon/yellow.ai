@@ -2,7 +2,7 @@ import { Avatar, Card, Checkbox, Col, Row, Space } from 'antd';
 import React, { useMemo } from 'react';
 import styles from './issue.module.css';
 import classNames from 'classnames/bind';
-import { getAvatarColor } from '../../utils/helpers';
+import { getColor } from '../../utils/helpers';
 import IssueInfo from './IssueInfo';
 import IssueFilterScreen from './IssueFilterScreen';
 import { IssueType } from '../../api/getIssueApi.types';
@@ -13,7 +13,7 @@ type PropType = {
 };
 
 const Issue = ({ issue }: PropType) => {
-  const avatarColor = useMemo(() => getAvatarColor(), [JSON.stringify(issue)]);
+  const avatarColor = useMemo(() => getColor(), [JSON.stringify(issue)]);
   const { title, user, labels = [], created_at, milestone } = issue;
   let createdBy = '';
   let due_on = '';
